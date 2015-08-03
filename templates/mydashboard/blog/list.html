@@ -1,0 +1,49 @@
+{% extends 'dashboard/layout.html' %}
+{% load dashboard_tags %}
+{% load i18n %}
+{% block body_class %}{{ block.super }} pages{% endblock %}
+{% block title %}
+  {% trans "Pages" %} | {{ block.super }}
+{% endblock %}
+{% block breadcrumbs %}
+  <ul class="breadcrumb">
+    <li>
+      <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">{% trans "Blog" %}</li>
+  </ul>
+{% endblock %}
+{% block header %}
+  <div class="page-header">
+    <h1>{% trans "Blog" %}</h1>
+  </div>
+{% endblock header %}
+{% block dashboard_content %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>{% trans "Title" %}</th>
+        <th>{% trans "Slug" %}</th>
+        <th>{% trans "Text" %}</th>
+        <th>{% trans "Action" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in object_list %}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.title}}</td>
+          <td>{{item.slug}}</td>
+          <td>{{item.text}}</td>
+          <td><a href="{% url 'mydashboard:edit_blog' item.pk %}">{% trans "Edit" %}</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'mydashboard:add_blog' %}" class="btn btn-primary">{% trans "Add in blog" %}</a>
+{% endblock dashboard_content %}
+{% block onbodyload %}
+  {{ block.super }}
+{% endblock onbodyload %}
