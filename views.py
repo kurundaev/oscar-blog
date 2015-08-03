@@ -10,18 +10,18 @@ from dashboard.models import Blog
 
 
 class BlogView(ListView):
-    template_name = 'mydashboard/blog/list.html'
+    template_name = 'dashboard/blog/list.html'
     model = Blog
 
 
 class BlogEditView(UpdateView):
-    template_name = 'mydashboard/blog/edit.html'
+    template_name = 'dashboard/blog/edit.html'
     model = Blog
-    success_url = reverse_lazy('mydashboard:blog')
+    success_url = reverse_lazy('dashboard:blog')
     fields = ['title', 'text', 'photo', 'enable']
 
 
 class AddBlogView(CreateView):
-    template_name = 'mydashboard/blog/add.html'
+    template_name = 'dashboard/blog/add.html'
     model = Blog
     fields = ['title', 'text', 'photo', 'enable']
